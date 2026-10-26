@@ -1,0 +1,10 @@
+Bibliothèques et polices hébergées avec la maquette
+
+GSAP 3.15 (gsap, ScrollTrigger, SplitText) : licence standard gratuite de GreenSock, https://gsap.com/standard-license
+Lenis 1.3.27 : licence MIT, voir assets/js/vendor/LICENSE-lenis.txt
+OGL 1.0.11 : domaine public (Unlicense), https://github.com/oframe/ogl
+Fraunces et Manrope : SIL Open Font License 1.1, voir assets/fonts/OFL-*.txt
+
+Photos : propriété de Joëlle Tay (site tonchemindevie.com). Toiles des Journées : signées Cloé, crédit à confirmer.
+Images d’ambiance (assets/img/grok) : générées avec Grok pour la maquette, sans personne reconnaissable.
+Visuels « provisoires » : dessinés en code pour la maquette, à remplacer par les images Grok manquantes.
