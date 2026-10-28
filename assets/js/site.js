@@ -137,6 +137,7 @@
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Ouvrir le menu');
     if (lenis) lenis.start();
+    majBarre();
   }
   if (burger && menu) {
     burger.addEventListener('click', () => {
@@ -145,12 +146,36 @@
       burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
       burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
       if (lenis) ouvert ? lenis.stop() : lenis.start();
+      majBarre();
       if (ouvert) setTimeout(() => { const l = $('a', menu); if (l) l.focus(); }, 200);
     });
     menu.addEventListener('click', (e) => { if (e.target.closest('a')) fermerMenu(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fermerMenu(); });
   }
   /* l’en-tête reste toujours visible : le bouton Mode calme doit rester accessible en un geste */
+
+  /* place occupée par l’en-tête et la barre du bas, mesurée (sections épinglées, dernier bloc) */
+  const barre = $('.barre-mobile');
+  function mesurerBarres() {
+    if (entete) html.style.setProperty('--entete-zone', `${Math.ceil((parseFloat(getComputedStyle(entete).top) || 0) + entete.offsetHeight)}px`);
+    const bh = barre && getComputedStyle(barre).display !== 'none' ? Math.ceil(barre.offsetHeight + (parseFloat(getComputedStyle(barre).bottom) || 0)) : 0;
+    html.style.setProperty('--barres-h', `${bh}px`);
+  }
+  mesurerBarres();
+  window.addEventListener('resize', mesurerBarres);
+  if ('ResizeObserver' in window) { const ro = new ResizeObserver(mesurerBarres); if (entete) ro.observe(entete); if (barre) ro.observe(barre); }
+
+  /* barre du bas : absente du héros, des formulaires, du pied de page et du menu ouvert */
+  const zonesBarre = new Map();
+  function majBarre() {
+    if (!barre) return;
+    const masquee = [...zonesBarre.values()].some(Boolean) || (menu && menu.classList.contains('ouvert'));
+    barre.classList.toggle('visible', !masquee);
+  }
+  if (barre && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => { es.forEach((e) => zonesBarre.set(e.target, e.isIntersecting)); majBarre(); });
+    $$('.ouv, #contact, main form, .pied').forEach((z) => { zonesBarre.set(z, true); io.observe(z); });
+  } else if (barre) barre.classList.add('visible');
 
 
   /* ---------- curseur, boutons magnétiques, cartes inclinées ---------- */

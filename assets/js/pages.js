@@ -112,7 +112,7 @@
         const tw = gsap.to(piste, {
           x: () => -dist(), ease: 'none',
           scrollTrigger: {
-            trigger: scene.closest('section'), start: 'top top', end: () => `+=${dist() + innerHeight * 0.4}`, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
+            trigger: scene.closest('section'), start: 'top top', end: () => `+=${dist() + innerHeight * 0.4}`, pin: true, scrub: 0.8, invalidateOnRefresh: true,
             onUpdate: (s) => barres.forEach((b, i) => gsap.set(b, { scaleX: Math.min(1, Math.max(0, s.progress * 4 - i)) }))
           }
         });
