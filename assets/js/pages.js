@@ -144,7 +144,7 @@
       const toiles = $('[data-toiles]'), tp = $('[data-toiles-piste]');
       mm.add('(min-width: 901px)', () => {
         const dist = () => Math.max(0, tp.scrollWidth - tp.parentElement.clientWidth);
-        gsap.to(tp, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: toiles.closest('section'), start: 'top top', end: () => `+=${dist() + innerHeight * 0.3}`, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 } });
+        gsap.to(tp, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: toiles.closest('section'), start: 'top top', end: () => `+=${dist() + innerHeight * 0.3}`, pin: true, scrub: 0.8, invalidateOnRefresh: true } });
       });
       $$('.toile').forEach((t, i) => gsap.from(t, { y: 70, rotate: i % 2 ? 2 : -2, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: toiles, start: 'top 75%' }, delay: Math.min(i, 3) * 0.08 }));
       $$('.deroule .pastille').forEach((p, i) => gsap.from(p, { scale: 0, duration: 0.8, delay: i * 0.12, ease: 'back.out(2)', scrollTrigger: { trigger: p.closest('ol'), start: 'top 82%' } }));

@@ -609,6 +609,24 @@ dialog.tiroir[open] { animation: tiroirOuvre .6s var(--ease); }
 .toile .cadre img { object-fit: contain; border-radius: 4px; }
 .toile figcaption { margin-top: 14px; font-size: .86rem; color: var(--brume); }
 .toile figcaption b { display: block; font-family: var(--serif); font-weight: 420; font-size: 1.1rem; color: var(--nuit); }
+/* galerie épinglée : tout tenir dans l’écran sous l’en-tête mesuré */
+@media (min-width: 901px) {
+  html:not(.calme) #toiles { height: 100svh; display: flex; flex-direction: column; padding-block: calc(var(--entete-zone) + clamp(12px, 3svh, 40px)) clamp(16px, 4svh, 40px); }
+  html:not(.calme) #toiles .entete-section { margin-bottom: clamp(16px, 4svh, 60px); }
+  html:not(.calme) #toiles .toiles { flex: 1; min-height: 0; }
+  html:not(.calme) #toiles .toiles > .wrap { height: 100%; }
+  html:not(.calme) .toiles__piste { height: 100%; align-items: stretch; }
+  html:not(.calme) .toile { display: flex; flex-direction: column; height: 100%; margin-block: 0; }
+  html:not(.calme) .toile .cadre { flex: 1; min-height: 0; aspect-ratio: auto; }
+  html:not(.calme) .toile .cadre img { height: 100%; }
+  html:not(.calme) .toile figcaption { flex: none; }
+}
+@media (min-width: 901px) and (max-height: 600px) {
+  html:not(.calme) #toiles .h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); }
+  html:not(.calme) #toiles .eyebrow { margin-bottom: .8rem; }
+  html:not(.calme) #toiles .chapo { font-size: 1rem; }
+  .toile figcaption { margin-top: 10px; }
+}
 @media (max-width: 900px) { .toiles__piste { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; } .toile { scroll-snap-align: center; width: 72vw; } }
 
 /* ----- déroulé d'une Journée ----- */
@@ -718,6 +736,9 @@ dialog.tiroir[open] { animation: tiroirOuvre .6s var(--ease); }
 .calme .seance__scene { min-height: 0; grid-template-columns: 1fr; padding-block: 80px; }
 .calme .etape { width: calc(50% - 18px); }
 .calme .toile { width: calc(33.33% - 32px); min-width: 220px; }
+.calme .seance__scene { height: auto; grid-template-rows: none; }
+.calme .seance__fenetre, .calme .seance__piste, .calme .etape { height: auto; }
+.calme .etape .cadre { flex: none; aspect-ratio: 4 / 5; }
 @media (max-width: 900px) { .calme .etape { width: 100%; } .calme .toile { width: 72vw; } .calme .toiles__piste { flex-wrap: nowrap; overflow-x: auto; } }
 .cadre--galet .etiquette-statut { left: 50%; transform: translateX(-50%); top: 9%; }
 .appel .chapo, .avis .chapo { color: rgba(246, 240, 230, .86); }
