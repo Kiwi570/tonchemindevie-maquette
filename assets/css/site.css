@@ -756,7 +756,6 @@ main { position: relative; display: block; }
 .cadre--toile img { object-fit: contain; border-radius: 6px; }
 .parcours::after { content: ''; position: absolute; left: 0; top: 9px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--or), var(--framboise)); transform-origin: left; transform: scaleX(var(--p, 1)); border-radius: 2px; }
 @media (max-width: 760px) { .parcours::after { left: 7px; top: 0; bottom: 0; width: 2px; height: 100%; transform: scaleY(var(--p, 1)); transform-origin: top; } }
-@media (max-width: 760px) { .provisoire-tag--ordi { display: none; } }
 
 /* page introuvable (404) */
 .ouv--introuvable { background: radial-gradient(90% 70% at 80% 20%, var(--nuit-3), var(--nuit) 70%); }
